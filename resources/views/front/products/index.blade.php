@@ -22,10 +22,9 @@
         <div class="container">
             <div class="row">
             <div class="product-breadcroumb">
-                            <a href="<?php echo url('');?>">Home</a>
-                            <a href="<?php echo url('products');?>?catid=<?php echo array_get($products, '0.categories.id', ''); ?>"><?php echo array_get($products, '0.categories.title', ''); ?></a>
-                            <a href="<?php echo url('products');?>/<?php echo array_get($products, '0.id', ''); ?>"><?php echo array_get($products, '0.title', ''); ?></a>
-                        </div>
+                <a href="<?php echo url('');?>">หน้าหลัก</a>
+                <a href="<?php echo url('products');?>">สินค้า</a>
+            </div>
 
 <?php   foreach ($products as $product): ?>
                 <div class="col-md-3 col-sm-6">
@@ -53,32 +52,37 @@
 <?php   endforeach; ?>
 
             </div>
-            
+
+<?php if (isset($pagination)) : ?>
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-pagination text-center">
                         <nav>
                           <ul class="pagination">
-                            <li>
-                              <a href="#" aria-label="Previous">
+
+                            <li class="<?php echo (array_get($pagination, 'firstPage.active', '') == 0 ? 'disabled' : ''); ?>">
+                              <a href="<?php echo array_get($pagination, 'firstPage.url', '');?>" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                               </a>
                             </li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li>
-                              <a href="#" aria-label="Next">
+<?php   foreach (array_get($pagination, 'midPage', []) as $key => $midPage) : ?>
+                            <li class="<?php echo (array_get($midPage, 'active', '') == 1 ? 'active' : ''); ?>">
+                                <a href="<?php echo array_get($midPage, 'url', '');?>"><?php echo $key; ?></a>
+                            </li>
+<?php   endforeach; ?>
+                            <li class="<?php echo (array_get($pagination, 'lastPage.active', '') == 0 ? 'disabled' : ''); ?>">
+                              <a href="<?php echo array_get($pagination, 'lastPage.url', '');?>" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                               </a>
                             </li>
+
                           </ul>
                         </nav>                        
                     </div>
                 </div>
             </div>
+<?php endif; ?>
+
         </div>
     </div>
 <?php endif; ?>

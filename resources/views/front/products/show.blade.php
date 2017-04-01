@@ -77,7 +77,8 @@
                 <div class="col-md-12">
                     <div class="product-content-right">
                         <div class="product-breadcroumb">
-                            <a href="<?php echo url('');?>">Home</a>
+                            <a href="<?php echo url('');?>">หน้าหลัก</a>
+                            <a href="<?php echo url('product');?>">สินค้า</a>
                             <a href="<?php echo url('products');?>?catid=<?php echo array_get($products, '0.categories.id', ''); ?>"><?php echo array_get($products, '0.categories.title', ''); ?></a>
                             <a href="<?php echo url('products');?>/<?php echo array_get($products, '0.id', ''); ?>"><?php echo array_get($products, '0.title', ''); ?></a>
                         </div>
@@ -114,7 +115,15 @@
                                     
                                     <div class="product-inner-category">
                                         <p>Category: <a href="<?php echo url('products');?>?catid=<?php echo array_get($products, '0.categories.id', ''); ?>"><?php echo array_get($products, '0.categories.title', ''); ?></a>. 
-                                        Tags: <a href="">awesome</a>, <a href="">best</a>, <a href="">sale</a>, <a href="">shoes</a>. </p>
+<?php if (isset($products[0]['tags']) && is_array($products[0]['tags'])) : ?>
+                                        Tags:
+<?php   foreach ($products[0]['tags'] as $tag): ?>
+                                        <a href="<?php echo url('products');?>?tags=<?php echo array_get($tag, 'title', ''); ?>">
+                                            <?php echo array_get($tag, 'title', ''); ?>
+                                        </a>
+<?php   endforeach; ?>
+<?php endif; ?>
+                                        </p>
                                     </div> 
                                     
                                     <div role="tabpanel">
