@@ -51,14 +51,14 @@ class FrontProductController extends Controller
             'order'   => 'position',
             'sort'    => 'asc'
         ];
-        $results  = requestClient('GET', 'categories', $params);
-        $category = array_get($results, 'data.record', []);
+        $results    = requestClient('GET', 'categories', $params);
+        $categories = array_get($results, 'data.record', []);
 
         $view = [
             'data'       => $data,
             'menus'      => $menus,
             'products'   => $products,
-            'category'   => $category,
+            'categories' => $categories,
             'pagination' => $pagination
         ];
         
@@ -105,9 +105,21 @@ class FrontProductController extends Controller
         $results = requestClient('GET', 'products/' . $id, $params);
         $products = array_get($results, 'data.record', []);
 
+        // Category
+        $params  = [
+            'user_id' => 1,
+            'status'  => 1,
+            'type'    => 4,
+            'order'   => 'position',
+            'sort'    => 'asc'
+        ];
+        $results    = requestClient('GET', 'categories', $params);
+        $categories = array_get($results, 'data.record', []);
+
         $view = [
             'menus'      => $menus,
             'products'   => $products,
+            'categories' => $categories,
         ];
 
         return view('front.products.show', $view);

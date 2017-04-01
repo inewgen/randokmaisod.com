@@ -7,10 +7,10 @@
                         <h2>ร้าน<span>บ้านดอกไม้สด</span></h2>
                         <p>รับจัดดอกไม้ ทั้งในและนอกสถานที่ ขายดอกไม้สดและปลอมทั้งปลีกและส่ง รับจัดช่อดอกไม้ พวงรีด ขายอุปกรณ์จัดดอกไม้ทุกชนิด ทั้งปลีกและส่ง บริการจัดส่งดอกไม้ถึงมือผู้รับสนใจสอบถามรายละเอียดได้ที่ 064-9392959</p>
                         <div class="footer-social">
-                            <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                            <a href="https://www.facebook.com/%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%AD%E0%B8%81%E0%B9%84%E0%B8%A1%E0%B9%89%E0%B8%AA%E0%B8%94-592992124234795/?fref=ts" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href="https://line.me/R/ti/p/%40lkn7166r" target="_blank"><i class="fa fa-weixin"></i></a>
+                            <a href="<?php echo url('');?>" target="_blank"><i class="fa fa-globe"></i></a>
+                            <a href="<?php echo url('contact');?>" target="_blank"><i class="fa fa-phone"></i></a>
                         </div>
                     </div>
                 </div>
@@ -51,12 +51,12 @@
                 
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-newsletter">
-                        <h2 class="footer-wid-title">Newsletter</h2>
-                        <p>Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to your inbox!</p>
+                        <h2 class="footer-wid-title">สมัครรับข่าวสาร</h2>
+                        <p>ลงทะเบียนสมัครรับข้อมูลข่าวสารจากเรา เพื่อรับข้อเสนอและสิทธิพิเศษจากทางเรา ด้วยการกรอกอีเมลลงในช่องข้างล่างนี้นะคะ</p>
                         <div class="newsletter-form">
-                            <form action="#">
-                                <input type="email" placeholder="Type your email">
-                                <input type="submit" value="Subscribe">
+                            <form action="#" onsubmit="javascript:alert('บันทึกข้อมูลอีเมล ' + $('#newsletter_email').val() +' เรียบร้อยแล้วค่ะ');return false;">
+                                <input id="newsletter_email" type="email" placeholder="พิมพ์อีเมลของคุณ">
+                                <input type="submit" value="ส่งข้อมูล">
                             </form>
                         </div>
                     </div>
@@ -74,14 +74,14 @@
                     </div>
                 </div>
                 
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                     <div class="footer-card-icon">
                         <i class="fa fa-cc-discover"></i>
                         <i class="fa fa-cc-mastercard"></i>
                         <i class="fa fa-cc-paypal"></i>
                         <i class="fa fa-cc-visa"></i>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

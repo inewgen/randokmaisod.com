@@ -3,13 +3,13 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="user-menu">
-                        <ul>
+                        <!-- <ul>
                             <li><a href="#"><i class="fa fa-user"></i> My Account</a></li>
                             <li><a href="#"><i class="fa fa-heart"></i> Wishlist</a></li>
                             <li><a href="cart.html"><i class="fa fa-user"></i> My Cart</a></li>
                             <li><a href="checkout.html"><i class="fa fa-user"></i> Checkout</a></li>
                             <li><a href="#"><i class="fa fa-user"></i> Login</a></li>
-                        </ul>
+                        </ul> -->
                     </div>
                 </div>
                 
@@ -19,9 +19,9 @@
                             <li class="dropdown dropdown-small">
                                 <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">currency :</span><span class="value">THB </span><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">USD</a></li>
-                                    <li><a href="#">INR</a></li>
-                                    <li><a href="#">GBP</a></li>
+                                    <li><a href="#">THB</a></li>
+                                    <!-- <li><a href="#">INR</a></li>
+                                    <li><a href="#">GBP</a></li> -->
                                 </ul>
                             </li>
 
@@ -29,9 +29,9 @@
                                 <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">language :</span><span class="value">ไทย </span><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">ไทย</a></li>
-                                    <li><a href="#">English</a></li>
+                                    <!-- <li><a href="#">English</a></li>
                                     <li><a href="#">French</a></li>
-                                    <li><a href="#">German</a></li>
+                                    <li><a href="#">German</a></li> -->
                                 </ul>
                             </li>
                         </ul>
