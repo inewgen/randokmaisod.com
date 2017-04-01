@@ -1,5 +1,24 @@
 <?php
 
+if (!function_exists('getImageLink')) {
+    // img|image, default|user_id, array(), 100, 100
+    function getImageLink($type, $section, $code, $extension, $w, $h, $name = 'siamits.jpg')
+    {
+        if (empty($type) || empty($section) || empty($code) || empty($extension)) {
+            return false;
+        }
+
+        $siamits_res = env('RES_URL', 'http://res.ranbandokmaisod.com');
+
+        if ($type == 'img') {
+            return $siamits_res . '/img/' . $section . '/' . $code . '/' . $extension . '/' . $w . '/' . $h .'/'.$name;
+        }
+        $user_id = $section;
+
+        return $siamits_res . '/image/' . $user_id . '/' . $code . '/' . $extension . '/' . $w . '/' . $h.'/'.$name;
+    }
+}
+
 if (!function_exists('requestClient')) {
     function requestClient($method, $path, $params = false)
     {

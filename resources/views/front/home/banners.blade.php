@@ -6,7 +6,7 @@
 
 <?php foreach ($banners as $banner) : ?>
 					<li>
-						<img src="<?php echo array_get($banner, 'images.0.url', ''); ?>" alt="Slide">
+						<img src="<?php echo getImageLink('image', array_get($banner, 'images.0.user_id', ''), array_get($banner, 'images.0.code', ''), array_get($banner, 'images.0.extension', ''), 1142, 358, array_get($banner, 'images.0.name', ''));?>" alt="Slide">
 						<div class="caption-group">
 							<h2 class="caption title">
 								<?php echo array_get($banner, 'title', ''); ?>

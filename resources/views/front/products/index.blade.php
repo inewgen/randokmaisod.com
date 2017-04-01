@@ -30,7 +30,7 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="single-shop-product">
                          <div class="product-upper">
-                            <img src="<?php echo array_get($product, 'images.0.url', '');?>" alt="">
+                            <img src="<?php echo getImageLink('image', array_get($product, 'images.0.user_id', ''), array_get($product, 'images.0.code', ''), array_get($product, 'images.0.extension', ''), 200, 220, array_get($product, 'images.0.name', ''));?>" alt="">
                         </div>
                         <h2>
                             <a href="<?php echo url('products/' . array_get($product, 'id', ''));?>">
