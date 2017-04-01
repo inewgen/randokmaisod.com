@@ -11,7 +11,7 @@
 <?php   foreach ($products_h as $product_h): ?>
                             <div class="single-product">
                                 <div class="product-f-image">
-                                    <img src="<?php echo getImageLink('image', array_get($product_h, 'images.0.user_id', ''), array_get($product_h, 'images.0.code', ''), array_get($product_h, 'images.0.extension', ''), 200, 220, array_get($product_h, 'images.0.name', ''));?>" alt="">
+                                    <img src="<?php echo getImageUrl(array_get($product_h, 'images.0', []), 200, 220);?>" alt="">
                                     <div class="product-hover">
                                         <a href="<?php echo url('products/' . array_get($product_h, 'id', ''));?>" class="add-to-cart-link">
                                             <i class="fa fa-shopping-cart"></i>

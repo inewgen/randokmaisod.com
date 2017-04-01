@@ -27,20 +27,32 @@ class FrontHomeController extends Controller
 
         // Highlight products
         $params['type'] = '2';
-        $results = requestClient('GET', 'products', $params);
-        $products_h = array_get($results, 'data.record', []);
+        $results        = requestClient('GET', 'products', $params);
+        $products_h     = array_get($results, 'data.record', []);
 
         // Normal products
-        $params['type'] = '1';
+        $params['type']    = '1';
         $params['perpage'] = '16';
-        $results = requestClient('GET', 'products', $params);
-        $products = array_get($results, 'data.record', []);
+        $results           = requestClient('GET', 'products', $params);
+        $products          = array_get($results, 'data.record', []);
+
+        // Category
+        $params  = [
+            'user_id' => 1,
+            'status'  => 1,
+            'type'    => 4,
+            'order'   => 'position',
+            'sort'    => 'asc'
+        ];
+        $results    = requestClient('GET', 'categories', $params);
+        $categories = array_get($results, 'data.record', []);
 
         $view = [
             'menus'      => $menus,
             'banners'    => $banners,
             'products_h' => $products_h,
             'products'   => $products,
+            'categories' => $categories,
         ];
 
         return view('front.home.index', $view);

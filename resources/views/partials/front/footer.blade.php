@@ -15,31 +15,39 @@
                     </div>
                 </div>
                 
+<?php if (isset($menus) && is_array($menus)) : ?>
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-menu">
-                        <h2 class="footer-wid-title">User Navigation </h2>
+                        <h2 class="footer-wid-title">เมนูแนะนำ</h2>
                         <ul>
-                            <li><a href="#">My account</a></li>
-                            <li><a href="#">Order history</a></li>
-                            <li><a href="#">Wishlist</a></li>
-                            <li><a href="#">Vendor contact</a></li>
-                            <li><a href="#">Front page</a></li>
+<?php foreach ($menus as $menu) : ?>
+                            <li>
+                                <a href="{{ env('APP_URL') }}/<?php echo array_get($menu, 'url', ''); ?>">
+                                    <?php echo array_get($menu, 'title', ''); ?>
+                                </a>
+                            </li>
+<?php endforeach; ?>
                         </ul>                        
                     </div>
                 </div>
+<?php endif; ?>
                 
+<?php   if (isset($categories) && is_array($categories)) : ?>
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-menu">
-                        <h2 class="footer-wid-title">Categories</h2>
+                        <h2 class="footer-wid-title">หมวดหมู่สินค้า</h2>
                         <ul>
-                            <li><a href="#">Mobile Phone</a></li>
-                            <li><a href="#">Home accesseries</a></li>
-                            <li><a href="#">LED TV</a></li>
-                            <li><a href="#">Computer</a></li>
-                            <li><a href="#">Gadets</a></li>
+<?php       foreach ($categories as $category) : ?>
+                            <li>
+                                <a href="<?php echo url('products?catid=' . array_get($category, 'id', ''));?>">
+                                    <?php echo array_get($category, 'title', '');?>
+                                </a>
+                            </li>
+<?php       endforeach; ?>
                         </ul>                        
                     </div>
                 </div>
+<?php   endif; ?>
                 
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-newsletter">
