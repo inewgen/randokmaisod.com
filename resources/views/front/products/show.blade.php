@@ -78,7 +78,7 @@
                     <div class="product-content-right">
                         <div class="product-breadcroumb">
                             <a href="<?php echo url('');?>">หน้าหลัก</a>
-                            <a href="<?php echo url('product');?>">สินค้า</a>
+                            <a href="<?php echo url('product');?>">สินค้าของเรา</a>
                             <a href="<?php echo url('products');?>?catid=<?php echo array_get($products, '0.categories.id', ''); ?>"><?php echo array_get($products, '0.categories.title', ''); ?></a>
                             <a href="<?php echo url('products');?>/<?php echo array_get($products, '0.id', ''); ?>"><?php echo array_get($products, '0.title', ''); ?></a>
                         </div>

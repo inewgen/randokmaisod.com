@@ -1,5 +1,44 @@
 <?php
 
+if (!function_exists('getPagination')) {
+    function getPagination($page = 1, $perpage = 10, $total = 0, $path = '')
+    {
+        $firstItem  = ($page * $perpage) - ($perpage - 1);
+        $lastItem   = $firstItem + $perpage - 1;
+        $lastPage   = ceil($total / $perpage);
+        $url        = url($path);
+        $pagination = [];
+
+        $pagination['display'] = [
+            'first' => ($firstItem > $total ? $total : $firstItem),
+            'last'  => ($lastItem > $total ? $total : $lastItem),
+            'total' => $total
+        ];
+
+        if ($lastPage > 1) {
+            $pagination['firstPage'] = [
+                'url'    => ($page == 1 ? '' : $url),
+                'active' => ($page == 1 ? 0 : 1),
+            ];
+
+            $pagination['lastPage']  = [
+                'url'    => $url . '?page=' . $lastPage,
+                'active' => ($page == $lastPage ? 0 : 1),
+            ];
+
+            for ($i = 1; $i <= $lastPage; $i++) {
+                $url = ($i == 1 ? $url : $url . '?page=' . $i);
+                $pagination['midPage'][$i] = [
+                    'url'    => ($page == $i ? $url : ''),
+                    'active' => ($page == $i ? 1 : 0),
+                ];
+            }
+        }
+
+        return $pagination;
+    }
+}
+
 if (!function_exists('getImageUrl')) {
     // img|image, default|user_id, array(), 100, 100
     function getImageUrl($image, $w = 200, $h = 200, $name = '')
@@ -10,25 +49,6 @@ if (!function_exists('getImageUrl')) {
         $extension = array_get($image, 'extension', '');
         $name = (!empty($name) ? $name : array_get($image, 'name', 'img.jpg'));
 
-        if (empty($type) || empty($section) || empty($code) || empty($extension)) {
-            return false;
-        }
-
-        $siamits_res = env('RES_URL', 'http://res.ranbandokmaisod.com');
-
-        if ($type == 'img') {
-            return $siamits_res . '/img/' . $section . '/' . $code . '/' . $extension . '/' . $w . '/' . $h .'/'.$name;
-        }
-        $user_id = $section;
-
-        return $siamits_res . '/image/' . $user_id . '/' . $code . '/' . $extension . '/' . $w . '/' . $h.'/'.$name;
-    }
-}
-
-if (!function_exists('getImageLink')) {
-    // img|image, default|user_id, array(), 100, 100
-    function getImageLink($type, $section, $code, $extension, $w, $h, $name = 'siamits.jpg')
-    {
         if (empty($type) || empty($section) || empty($code) || empty($extension)) {
             return false;
         }

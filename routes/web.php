@@ -13,4 +13,7 @@
 
 Route::get('/products', 'FrontProductController@index');
 Route::get('/products/{id}', 'FrontProductController@show');
+Route::get('/categories', 'FrontCategoryController@index');
+Route::get('/howto', 'FrontHowtoController@index');
+Route::get('/contact', 'FrontContactController@index');
 Route::get('/', 'FrontHomeController@index');

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Input;
 
-class FrontProductController extends Controller
+class FrontHowtoController extends Controller
 {
     /**
      * Show the profile for the given user.
@@ -37,10 +37,6 @@ class FrontProductController extends Controller
             'sort'    => $sort
         ];
 
-        if ($category_id = array_get($data, 'catid', false)) {
-            $params['category_id'] = $category_id;
-        }
-
         $results    = requestClient('GET', 'products', $params);
         $products   = array_get($results, 'data.record', []);
         $pagination = getPagination($page, $perpage, array_get($results, 'data.pagination.total', 0), 'products');
@@ -56,52 +52,14 @@ class FrontProductController extends Controller
         $results    = requestClient('GET', 'categories', $params);
         $categories = array_get($results, 'data.record', []);
 
-        // Mapping Category
-        $categories_map = [];
-        foreach ($categories as $category) {
-            $categories_map[array_get($category, 'id', '')] = $category;
-        }
-
         $view = [
-            'data'           => $data,
-            'menus'          => $menus,
-            'products'       => $products,
-            'categories'     => $categories,
-            'categories_map' => $categories_map,
-            'pagination'     => $pagination
-        ];
-        
-        return view('front.products.index', $view);
-    }
-
-    public function show($id)
-    {
-        // Menu
-        $params  = [ 'user_id' => 1, 'status' => 1, 'order' => 'position', 'sort' => 'asc'];
-        $results = requestClient('GET', 'navigations', $params);
-        $menus   = array_get($results, 'data.record', []);
-
-        // Normal products
-        $results = requestClient('GET', 'products/' . $id, $params);
-        $products = array_get($results, 'data.record', []);
-
-        // Category
-        $params  = [
-            'user_id' => 1,
-            'status'  => 1,
-            'type'    => 4,
-            'order'   => 'position',
-            'sort'    => 'asc'
-        ];
-        $results    = requestClient('GET', 'categories', $params);
-        $categories = array_get($results, 'data.record', []);
-
-        $view = [
+            'data'       => $data,
             'menus'      => $menus,
             'products'   => $products,
             'categories' => $categories,
+            'pagination' => $pagination
         ];
-
-        return view('front.products.show', $view);
+        
+        return view('front.products.index', $view);
     }
 }
