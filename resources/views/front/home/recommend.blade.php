@@ -31,9 +31,9 @@
                                 </h2>
                                 
                                 <div class="product-carousel-price">
-                                    <ins>฿<?php echo array_get($product_h, 'price', '');?></ins>
-<?php       if (array_get($product_h, 'price_normal', '0') > 0) : ?>
-                                    <del>฿<?php echo array_get($product_h, 'price_normal', '');?></del>
+                                    <ins><?php echo array_get($product_h, 'price', '');?> บาท</ins>
+<?php       if (array_get($product_h, 'price_normal', 0) > 0) : ?>
+                                    <del><?php echo array_get($product_h, 'price_normal', '');?> บาท</del>
 <?php       endif; ?>
                                 </div> 
                             </div>
