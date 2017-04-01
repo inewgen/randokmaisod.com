@@ -102,8 +102,10 @@
                                 <div class="product-inner">
                                     <h2 class="product-name"><?php echo array_get($products, '0.title', ''); ?></h2>
                                     <div class="product-inner-price">
-                                        <ins>฿<?php echo array_get($products, '0.price', ''); ?></ins>
-                                        <del>฿<?php echo array_get($products, '0.price_normal', ''); ?></del>
+                                        <ins><?php echo array_get($products, '0.price', ''); ?> บาท</ins>
+<?php       if (array_get($products, 'price_normal', 0) > 0) : ?>
+                                        <del><?php echo array_get($products, '0.price_normal', ''); ?> บาท</del>
+<?php       endif; ?>
                                     </div>    
                                     
                                     <form action="" class="cart">
@@ -166,7 +168,7 @@
                         </div>
                         
                         
-                        <div class="related-products-wrapper">
+                        <!-- <div class="related-products-wrapper">
                             <h2 class="related-products-title">Related Products</h2>
                             <div class="related-products-carousel">
                                 <div class="single-product">
@@ -259,7 +261,7 @@
                                     </div>                            
                                 </div>                                    
                             </div>
-                        </div>
+                        </div> -->
                     </div>                    
                 </div>
             </div>

@@ -8,7 +8,7 @@
     
     @include('front.home.promotion')
     
-    @include('front.home.maincontent')
+    @include('front.home.recommend')
     
     @include('front.home.brands')
     
