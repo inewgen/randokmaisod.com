@@ -209,7 +209,7 @@
           var mapOptions = {
             zoom: 14,
             scrollwheel: false,
-            center: new google.maps.LatLng(17.164034, 104.152802)
+            center: new google.maps.LatLng(17.16306217508892,104.1541906446218)
           };
           var map = new google.maps.Map(document.getElementById('googleMap'),
               mapOptions);
