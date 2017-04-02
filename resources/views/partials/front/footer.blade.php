@@ -4,12 +4,12 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-about-us">
-                        <h2>ร้าน<span>บ้านดอกไม้สด</span></h2>
-                        <p>รับจัดดอกไม้ ทั้งในและนอกสถานที่ ขายดอกไม้สดและปลอมทั้งปลีกและส่ง รับจัดช่อดอกไม้ พวงรีด ขายอุปกรณ์จัดดอกไม้ทุกชนิด ทั้งปลีกและส่ง บริการจัดส่งดอกไม้ถึงมือผู้รับสนใจสอบถามรายละเอียดได้ที่ 064-9392959</p>
+                        <h2><span><?php echo array_get($settings, 'shop_name.value', ''); ?></span></h2>
+                        <p><?php echo array_get($settings, 'shop_description.value', ''); ?></p>
                         <div class="footer-social">
-                            <a href="https://www.facebook.com/%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%AD%E0%B8%81%E0%B9%84%E0%B8%A1%E0%B9%89%E0%B8%AA%E0%B8%94-592992124234795/?fref=ts" target="_blank"><i class="fa fa-facebook"></i></a>
-                            <a href="https://line.me/R/ti/p/%40lkn7166r" target="_blank"><i class="fa fa-weixin"></i></a>
-                            <a href="<?php echo url('');?>" target="_blank"><i class="fa fa-globe"></i></a>
+                            <a href="<?php echo array_get($settings, 'facebook.value', ''); ?>" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href="<?php echo array_get($settings, 'line.value', ''); ?>" target="_blank"><i class="fa fa-weixin"></i></a>
+                            <a href="<?php echo array_get($settings, 'website.value', ''); ?>" target="_blank"><i class="fa fa-globe"></i></a>
                             <a href="<?php echo url('contact');?>" target="_blank"><i class="fa fa-phone"></i></a>
                         </div>
                     </div>

@@ -52,11 +52,23 @@ class FrontHowtoController extends Controller
         $results    = requestClient('GET', 'categories', $params);
         $categories = array_get($results, 'data.record', []);
 
+        // Shop settings
+        $params       = [];
+        $results      = requestClient('GET', 'shopsettings', $params);
+        $shopsettings = array_get($results, 'data.record', []);
+
+        // Mapping Category
+        $settings = [];
+        foreach ($shopsettings as $shopsetting) {
+            $settings[array_get($shopsetting, 'key', '')] = $shopsetting;
+        }
+
         $view = [
             'data'       => $data,
             'menus'      => $menus,
             'products'   => $products,
             'categories' => $categories,
+            'settings'   => $settings,
             'pagination' => $pagination
         ];
         

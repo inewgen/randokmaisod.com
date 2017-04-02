@@ -52,11 +52,23 @@ class FrontCategoryController extends Controller
         $categories = array_get($results, 'data.record', []);
         $pagination = getPagination($page, $perpage, array_get($results, 'data.pagination.total', 0), 'products');
 
+        // Shop settings
+        $params       = [];
+        $results      = requestClient('GET', 'shopsettings', $params);
+        $shopsettings = array_get($results, 'data.record', []);
+
+        // Mapping Category
+        $settings = [];
+        foreach ($shopsettings as $shopsetting) {
+            $settings[array_get($shopsetting, 'key', '')] = $shopsetting;
+        }
+
         $view = [
             'data'       => $data,
             'menus'      => $menus,
             'products'   => $products,
             'categories' => $categories,
+            'settings'   => $settings,
             'pagination' => $pagination
         ];
         

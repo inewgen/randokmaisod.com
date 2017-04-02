@@ -41,6 +41,10 @@ class FrontProductController extends Controller
             $params['category_id'] = $category_id;
         }
 
+        if ($s = array_get($data, 's', false)) {
+            $params['s'] = $s;
+        }
+
         $results    = requestClient('GET', 'products', $params);
         $products   = array_get($results, 'data.record', []);
         $pagination = getPagination($page, $perpage, array_get($results, 'data.pagination.total', 0), 'products');
@@ -62,12 +66,24 @@ class FrontProductController extends Controller
             $categories_map[array_get($category, 'id', '')] = $category;
         }
 
+        // Shop settings
+        $params       = [];
+        $results      = requestClient('GET', 'shopsettings', $params);
+        $shopsettings = array_get($results, 'data.record', []);
+
+        // Mapping Category
+        $settings = [];
+        foreach ($shopsettings as $shopsetting) {
+            $settings[array_get($shopsetting, 'key', '')] = $shopsetting;
+        }
+
         $view = [
             'data'           => $data,
             'menus'          => $menus,
             'products'       => $products,
             'categories'     => $categories,
             'categories_map' => $categories_map,
+            'settings'       => $settings,
             'pagination'     => $pagination
         ];
         
@@ -96,10 +112,22 @@ class FrontProductController extends Controller
         $results    = requestClient('GET', 'categories', $params);
         $categories = array_get($results, 'data.record', []);
 
+        // Shop settings
+        $params       = [];
+        $results      = requestClient('GET', 'shopsettings', $params);
+        $shopsettings = array_get($results, 'data.record', []);
+
+        // Mapping Category
+        $settings = [];
+        foreach ($shopsettings as $shopsetting) {
+            $settings[array_get($shopsetting, 'key', '')] = $shopsetting;
+        }
+
         $view = [
             'menus'      => $menus,
             'products'   => $products,
             'categories' => $categories,
+            'settings'   => $settings,
         ];
 
         return view('front.products.show', $view);

@@ -47,12 +47,24 @@ class FrontHomeController extends Controller
         $results    = requestClient('GET', 'categories', $params);
         $categories = array_get($results, 'data.record', []);
 
+        // Shop settings
+        $params       = [];
+        $results      = requestClient('GET', 'shopsettings', $params);
+        $shopsettings = array_get($results, 'data.record', []);
+
+        // Mapping Category
+        $settings = [];
+        foreach ($shopsettings as $shopsetting) {
+            $settings[array_get($shopsetting, 'key', '')] = $shopsetting;
+        }
+
         $view = [
             'menus'      => $menus,
             'banners'    => $banners,
             'products_h' => $products_h,
             'products'   => $products,
             'categories' => $categories,
+            'settings'   => $settings,
         ];
 
         return view('front.home.index', $view);

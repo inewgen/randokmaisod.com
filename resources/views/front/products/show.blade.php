@@ -108,19 +108,19 @@
 <?php       endif; ?>
                                     </div>    
                                     
-                                    <form action="" class="cart">
+                                    <!-- <form action="" class="cart">
                                         <div class="quantity">
                                             <input type="number" size="4" class="input-text qty text" title="Qty" value="1" name="quantity" min="1" step="1">
                                         </div>
                                         <button class="add_to_cart_button" type="submit">Add to cart</button>
-                                    </form>   
+                                    </form>   --> 
                                     
                                     <div class="product-inner-category">
                                         <p>Category: <a href="<?php echo url('products');?>?catid=<?php echo array_get($products, '0.categories.id', ''); ?>"><?php echo array_get($products, '0.categories.title', ''); ?></a>. 
 <?php if (isset($products[0]['tags']) && is_array($products[0]['tags'])) : ?>
                                         Tags:
 <?php   foreach ($products[0]['tags'] as $tag): ?>
-                                        <a href="<?php echo url('products');?>?tags=<?php echo array_get($tag, 'title', ''); ?>">
+                                        <a href="<?php echo url('products');?>?s=<?php echo array_get($tag, 'title', ''); ?>">
                                             <?php echo array_get($tag, 'title', ''); ?>
                                         </a>
 <?php   endforeach; ?>
@@ -131,7 +131,7 @@
                                     <div role="tabpanel">
                                         <ul class="product-tab" role="tablist">
                                             <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Description</a></li>
-                                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Reviews</a></li>
+                                            <!-- <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Reviews</a></li> -->
                                         </ul>
                                         <div class="tab-content">
                                             <div role="tabpanel" class="tab-pane fade in active" id="home">

@@ -69,32 +69,32 @@
                                     <ul>
                                         <li><i class="fa fa-home"></i>
                                             <p>
-                                                1013/3 ถ เจริญเมือง ต ธาตุเชิงชุม อ เมือง จ สกลนคร 47000
+                                                <?php echo array_get($settings, 'address.value', ''); ?>
                                             </p>
                                         </li>
                                         <li><i class="fa fa-facebook"></i>
-                                            <p><a href="https://www.facebook.com/%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%AD%E0%B8%81%E0%B9%84%E0%B8%A1%E0%B9%89%E0%B8%AA%E0%B8%94-592992124234795">
-                                                https://www.facebook.com/ร้านบ้านดอกไม้สด-592992124234795
+                                            <p><a href="<?php echo array_get($settings, 'facebook.value', ''); ?>">
+                                                <?php echo array_get($settings, 'facebook.value', ''); ?>
                                             </a></p>
                                         </li>
                                         <li><i class="fa fa-weixin"></i>
-                                            <p><a href="https://line.me/R/ti/p/%40lkn7166r">
-                                                https://line.me/R/ti/p/%40lkn7166r
+                                            <p><a href="<?php echo array_get($settings, 'line.value', ''); ?>">
+                                                <?php echo array_get($settings, 'line.value', ''); ?>
                                             </a></p>
                                         </li>
                                         <li><i class="fa fa-globe"></i>
-                                            <p><a href="http://www.ranbandokmaisod.com">
-                                                http://www.ranbandokmaisod.com
+                                            <p><a href="<?php echo array_get($settings, 'website.value', ''); ?>">
+                                                <?php echo array_get($settings, 'website.value', ''); ?>
                                             </a></p>
                                         </li>
                                         <li><i class="fa fa-envelope"></i>
-                                            <p><a href="mailto:ranbandokmai@gmail.com">
-                                                ranbandokmai@gmail.com
+                                            <p><a href="mailto:<?php echo array_get($settings, 'email.value', ''); ?>">
+                                                <?php echo array_get($settings, 'email.value', ''); ?>
                                             </a></p>
                                         </li>
                                         <li><i class="fa fa-phone"></i>
                                             <p>
-                                                064-9392959, 061-4287196
+                                                <?php echo array_get($settings, 'mobile.value', ''); ?>
                                             </p>
                                         </li>
                                     </ul>
@@ -254,7 +254,7 @@
         var map = new google.maps.Map(document.getElementById('googleMap'), {
           zoom: 15,
           scrollwheel: false,
-          center: {lat: 17.16306217508892, lng: 104.1541906446218}
+          center: {lat: <?php echo array_get($settings, 'shop_latitude.value', ''); ?>, lng: <?php echo array_get($settings, 'shop_longitude.value', ''); ?>}
         });
 
         marker = new google.maps.Marker({
@@ -263,7 +263,7 @@
           animation:google.maps.Animation.BOUNCE,
           // draggable: true,
           // animation: google.maps.Animation.DROP,
-          position: {lat: 17.16306217508892, lng: 104.1541906446218},
+          position: {lat: <?php echo array_get($settings, 'shop_latitude.value', ''); ?>, lng: <?php echo array_get($settings, 'shop_longitude.value', ''); ?>},
           icon: 'http://res.ranbandokmaisod.com/public/uploads/assets/images/default/map-marker.png',
         });
         marker.addListener('click', toggleBounce);
