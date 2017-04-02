@@ -1,6 +1,6 @@
 @extends('layouts.ustora')
 
-@section('title', 'ร้านบ้านดอกไม้สด :: หน้าหลัก')
+@section('title', 'ร้านบ้านดอกไม้สด :: หมวดหมู่สินค้า')
 
 @section('content')
 
