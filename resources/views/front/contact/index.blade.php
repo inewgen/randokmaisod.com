@@ -56,7 +56,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="cnt_info">
                                     <ul>
-                                        <li><i class="fa fa-address"></i><p>121 King Street, Melbourne สกลนคร</p></li>
+                                        <li><i class="fa fa-facebook"></i><p>121 King Street, Melbourne สกลนคร</p></li>
                                         <li><i class="fa fa-envelope"></i><p>ranbandokmai@gmail.com</p></li>
                                         <li><i class="fa fa-phone"></i><p>064-9392959, 061-4287196</p></li>
                                     </ul>
