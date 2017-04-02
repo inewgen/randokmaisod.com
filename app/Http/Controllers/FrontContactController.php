@@ -60,6 +60,6 @@ class FrontContactController extends Controller
             'pagination' => $pagination
         ];
         
-        return view('front.products.index', $view);
+        return view('front.contact.index', $view);
     }
 }
