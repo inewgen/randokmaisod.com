@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Input;
@@ -61,5 +62,52 @@ class FrontContactController extends Controller
         ];
         
         return view('front.contact.index', $view);
+    }
+
+    public function postAddContact()
+    {
+        $data = Input::all();
+
+        // Validator request
+        $rules = array(
+            'name'    => 'required',
+            'email'   => 'required',
+            'message' => 'required',
+        );
+
+        $referer = array_get($data, 'referer', '');
+        
+        $validator = Validator::make($data, $rules);
+        if ($validator->fails()) {
+            return redirect('contact')->with('status', 'ขออภัยค่ะ ลูกค้ากรอกข้อมูลไม่ถูกต้องค่ะ');
+        }
+
+        $ip = $_SERVER['REMOTE_ADDR'];
+
+
+        // Parameters
+        $parameters_allow = array(
+            'name'    => '',
+            'email'   => '',
+            'mobile'  => '',
+            'message' => '',
+            'user_id' => '',
+            'status'  => '1', // 0=Closed,1=New,2=Read,3=Active
+            'ip'      => $ip,
+            'url'     => $referer,
+        );
+
+        $parameters = array();
+        foreach ($parameters_allow as $key => $val) {
+            $parameters[$key] = array_get($data, $key, $val);
+        }
+
+        $results = requestClient('POST', 'contacts', $parameters);
+
+        if (array_get($results, 'status_code', false) != '0') {
+            return redirect('contact')->with('status', 'ขออภัยค่ะ ไม่สามารถส่งข้อความของลูกค้าได้ในขณะนี้');
+        }
+
+        return redirect('contact')->with('status', 'ส่งข้อความของลูกค้าเรียบร้อยแล้วค่ะ');
     }
 }

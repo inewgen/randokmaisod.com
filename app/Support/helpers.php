@@ -74,6 +74,7 @@ if (!function_exists('requestClient')) {
             $params = $params ? http_build_query($params) : false;
             $res    = $client->request($method, $base_uri . '/' . $path . ($params ? '?' . $params : ''));
         } elseif ($method == 'POST') {
+            $params = [ 'form_params' => $params ];
             $res = $client->request($method, $base_uri . '/' . $path, $params);
         } elseif ($method == 'PUT') {
             $res = $client->request($method, $base_uri . '/' . $path, $params);

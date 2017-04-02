@@ -37,28 +37,66 @@
                             </div>      
                             <div class="col-sm-6"> 
                                 <div id="cnt_form">
-                                    <form id="contact-form" class="contact" name="contact-form" method="post" action="send-mail.php">
+                                    @if (session('status'))
+                                        <div class="alert alert-success">
+                                            {{ session('status') }}
+                                        </div>
+                                    @endif
+                                    <form action="<?php echo URL::to('contact');?>" class="contactForm" name="frm_main" id="frm_main" method="post">
                                         <div class="form-group">
-                                        <input type="text" name="name" class="form-control name-field" required="required" placeholder="Your Name">
+                                        <input type="text" name="name" class="form-control name-field" required="required" placeholder="ชื่อของคุณ">
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" name="email" class="form-control mail-field" required="required" placeholder="Your Email">
-                                        </div> 
-                                        <div class="form-group">
-                                            <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Message"></textarea>
-                                        </div> 
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-primary">Send</button>
+                                            <input type="email" name="email" class="form-control mail-field" required="required" placeholder="อีเมลของคุณ">
                                         </div>
+                                        <div class="form-group">
+                                            <input type="mobile" name="mobile" class="form-control mail-field" required="required" placeholder="เบอร์โทรติดต่อกลับ">
+                                        </div> 
+                                        <div class="form-group">
+                                            <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="ข้อความ"></textarea>
+                                        </div> 
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary">ส่งข้อความ</button>
+                                        </div>
+                                        <input type="hidden" name="user_id" value="">
+                                        <input type="hidden" name="referer" value="<?php echo URL::to('contact');?>">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     </form> 
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="cnt_info">
                                     <ul>
-                                        <li><i class="fa fa-facebook"></i><p>121 King Street, Melbourne สกลนคร</p></li>
-                                        <li><i class="fa fa-envelope"></i><p>ranbandokmai@gmail.com</p></li>
-                                        <li><i class="fa fa-phone"></i><p>064-9392959, 061-4287196</p></li>
+                                        <li><i class="fa fa-home"></i>
+                                            <p>
+                                                1013/3 ถ เจริญเมือง ต ธาตุเชิงชุม อ เมือง จ สกลนคร 47000
+                                            </p>
+                                        </li>
+                                        <li><i class="fa fa-facebook"></i>
+                                            <p><a href="https://www.facebook.com/%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%9A%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%94%E0%B8%AD%E0%B8%81%E0%B9%84%E0%B8%A1%E0%B9%89%E0%B8%AA%E0%B8%94-592992124234795">
+                                                https://www.facebook.com/ร้านบ้านดอกไม้สด-592992124234795
+                                            </a></p>
+                                        </li>
+                                        <li><i class="fa fa-weixin"></i>
+                                            <p><a href="https://line.me/R/ti/p/%40lkn7166r">
+                                                https://line.me/R/ti/p/%40lkn7166r
+                                            </a></p>
+                                        </li>
+                                        <li><i class="fa fa-globe"></i>
+                                            <p><a href="http://www.ranbandokmaisod.com">
+                                                http://www.ranbandokmaisod.com
+                                            </a></p>
+                                        </li>
+                                        <li><i class="fa fa-envelope"></i>
+                                            <p><a href="mailto:ranbandokmai@gmail.com">
+                                                ranbandokmai@gmail.com
+                                            </a></p>
+                                        </li>
+                                        <li><i class="fa fa-phone"></i>
+                                            <p>
+                                                064-9392959, 061-4287196
+                                            </p>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>          
@@ -76,7 +114,7 @@
                             <h1>แผนที่ร้านค้า</h1><a href="#slidingDiv" class="show_hide" rel="#slidingDiv"></a>
                             <div id="slidingDiv">
                                 <div class="map_area">
-                                    <div id="googleMap" style="width:100%;height:300px;"></div>
+                                    <div id="googleMap" style="width:100%;height:400px;"></div>
                                 </div>
                             </div>  
                             </div>
@@ -203,8 +241,46 @@
 @endpush
 
 @push('scripts')
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVjTijWk9XHfgq81SwkgkTrVLT55TTxrA&callback=initMap"></script>
-    <script type="text/javascript">
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVjTijWk9XHfgq81SwkgkTrVLT55TTxrA&callback=initMap"></script> -->
+    <script>
+
+      // The following example creates a marker in Stockholm, Sweden using a DROP
+      // animation. Clicking on the marker will toggle the animation between a BOUNCE
+      // animation and no animation.
+
+      var marker;
+
+      function initMap() {
+        var map = new google.maps.Map(document.getElementById('googleMap'), {
+          zoom: 15,
+          scrollwheel: false,
+          center: {lat: 17.16306217508892, lng: 104.1541906446218}
+        });
+
+        marker = new google.maps.Marker({
+          map: map,
+          position: map.getCenter(),
+          animation:google.maps.Animation.BOUNCE,
+          // draggable: true,
+          // animation: google.maps.Animation.DROP,
+          position: {lat: 17.16306217508892, lng: 104.1541906446218},
+          icon: 'http://res.ranbandokmaisod.com/public/uploads/assets/images/default/map-marker.png',
+        });
+        marker.addListener('click', toggleBounce);
+      }
+
+      function toggleBounce() {
+        if (marker.getAnimation() !== null) {
+          marker.setAnimation(null);
+        } else {
+          marker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVjTijWk9XHfgq81SwkgkTrVLT55TTxrA&callback=initMap">
+    </script>
+    <!-- <script type="text/javascript">
         function initialize() {
           var mapOptions = {
             zoom: 14,
@@ -225,5 +301,5 @@
         $(function () {
             /* Script */
         });
-    </script>
+    </script> -->
 @endpush
