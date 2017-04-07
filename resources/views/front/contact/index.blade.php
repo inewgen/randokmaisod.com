@@ -74,7 +74,7 @@
                                         </li>
                                         <li><i class="fa fa-facebook"></i>
                                             <p><a href="<?php echo array_get($settings, 'facebook.value', ''); ?>">
-                                                <?php echo array_get($settings, 'facebook.value', ''); ?>
+                                                Facebook
                                             </a></p>
                                         </li>
                                         <li><i class="fa fa-weixin"></i>
